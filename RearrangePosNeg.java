@@ -2,30 +2,36 @@ package DSA;
 import java.util.*;
 
 public class RearrangePosNeg {
-
-    public static void main(String args[]){
-        ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1, 2, -4, -5));
-        ArrayList<Integer> ans = RearrangeBySign(A);
-        for(int i = 0; i < ans.size(); i++){
-            System.out.print(ans.get(i) + " ");
-        }
-    }
-    public static ArrayList<Integer> RearrangeBySign(ArrayList<Integer> A){
-        int n = A.size();
-
-        ArrayList<Integer> ans = new ArrayList<>(Collections.nCopies(n, null));
+    public int[] rearrangeArray(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[n];
 
         int pos = 0, neg = 1;
+
         for(int i = 0; i < n; i++){
-            if(A.get(i) >= 0){
-                ans.set(neg, A.get(i));
-                neg = neg + 2;
+            if(nums[i] > 0){
+                ans[pos] = nums[i];
+                pos += 2;
             } else{
-                ans.set(pos, A.get(i));
-                pos = pos + 2;
+                ans[neg] = nums[i];
+                neg += 2;
             }
         }
         return ans;
+        
+    }
+    public static void main(String args[]){
+    int[] nums = {3,1,-2,-5,2,-4};
+    RearrangePosNeg sol = new RearrangePosNeg();
+    int[] result = sol.rearrangeArray(nums);
+
+    for(int num : result){
+        System.out.print(num + " ");
+    }
     }
 
 }
+    
+
+    
+
